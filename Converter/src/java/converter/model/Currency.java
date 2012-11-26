@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @author zoe
  */
 @Entity
-public class Currency implements Serializable {
+public class Currency implements CurrencyDTO, Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
