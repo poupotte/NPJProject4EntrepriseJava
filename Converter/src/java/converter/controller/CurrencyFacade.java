@@ -12,8 +12,14 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class CurrencyFacade {
+    
+    private EntityManager;
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+    public CurrencyDTO createNewCurrency(String name, Integer conversion) {
+        Currency newCurrency = new Currency(name, conversion);
+        return newCurrency;
+    }
 
 }

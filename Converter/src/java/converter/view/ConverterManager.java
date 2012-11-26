@@ -4,11 +4,12 @@
  */
 package converter.view;
 
-import javax.inject.Named;
-import javax.enterprise.context.ConversationScoped;
+import converter.model.CurrencyDTO;
 import java.io.Serializable;
 import javax.enterprise.context.Conversation;
+import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
@@ -60,4 +61,10 @@ public class ConverterManager implements Serializable {
         return transactionFailure;
     }
     
+    public Integer findConversion(CurrencyDTO currencyFrom, 
+            CurrencyDTO currencyTo, Integer amount) {
+        Integer conversionFrom = currencyFrom.getConversion();
+        Integer conversionTo = currencyTo.getConversion();
+        return amount*(conversionFrom/conversionTo);
+    }
 }

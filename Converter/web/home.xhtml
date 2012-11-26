@@ -9,7 +9,29 @@
         <h1>Welcome to the converter</h1>
         <h:form>
             <h2>Convert currency</h2>
-            <h:inputText id="currency" value="" />
+             <p>
+                <h:outputLabel for="currency" value="Convert from ..." />
+                    <select name="currency" id="currencyFrom">
+                        <option value="euro">Euro</option>
+                        <option value="sek">SEK</option>
+                        <option value="dollar">Dollar</option>
+                        <option value="pound">Pound</option>
+                        <option value="yuan">Yuan</option>
+                    </select>
+             </p>
+             <p>
+                 <h:outputLabel for="currency" value="Convert to ..." />
+                    <select name="currency" id="currencyTo">
+                        <option value="france">Euro</option>
+                        <option value="espagne">SEK</option>
+                        <option value="italie">Dollar</option>
+                    </select>
+             </p>
+             <p>
+                <h:outputLabel for="amount" value="Amount : "/> 
+                <h:inputText id="amount" value="#{convertManager.amountToConvert}" />
+             </p>
+             <h:commandButton value="Convert" action="#{convertManager.convertedAmount}"/>
         </h:form>      
 
     </h:body>
