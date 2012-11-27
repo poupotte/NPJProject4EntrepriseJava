@@ -10,9 +10,9 @@ package converter.model;
  */
 public interface CurrencyDTO {
 
-    public Integer getConversion();
+    public Float getConversion();
     
-    public void setConversion(Integer conversion);
+    public void setConversion(Float conversion);
  
     public String getId();
     

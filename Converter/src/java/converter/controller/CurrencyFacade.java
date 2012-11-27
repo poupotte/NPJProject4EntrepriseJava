@@ -21,7 +21,7 @@ public class CurrencyFacade {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    public CurrencyDTO createNewCurrency(String name, Integer conversion) {
+    public CurrencyDTO createNewCurrency(String name, Float conversion) {
         Currency newCurrency = new Currency(name, conversion);
         em.persist(newCurrency);
         return newCurrency;

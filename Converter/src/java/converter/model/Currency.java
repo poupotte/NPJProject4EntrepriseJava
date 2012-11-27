@@ -20,7 +20,7 @@ public class Currency implements CurrencyDTO, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String name;    
-    private Integer conversion; // Conversion to convert in euro
+    private Float conversion; // Conversion to convert in euro
 
     public Currency() {
     }
@@ -28,7 +28,7 @@ public class Currency implements CurrencyDTO, Serializable {
     /*
      * Create a new instance of Currency
      */
-    public Currency(String name, Integer conversion){
+    public Currency(String name, Float conversion){
         this.name = name;
         this.conversion = conversion;       
     }
@@ -44,12 +44,12 @@ public class Currency implements CurrencyDTO, Serializable {
     }
 
     @Override
-    public Integer getConversion(){
+    public Float getConversion(){
         return conversion;
     }
     
     @Override
-    public void setConversion(Integer conversion){
+    public void setConversion(Float conversion){
         this.conversion = conversion;
     }
     

@@ -4,6 +4,7 @@
  */
 package converter.view;
 
+import converter.controller.CurrencyFacade;
 import converter.model.CurrencyDTO;
 import java.io.Serializable;
 import javax.enterprise.context.Conversation;
@@ -13,21 +14,53 @@ import javax.inject.Named;
 
 /**
  *
- * @author zoe
+ * @author Simon Cathébras 
+ * @author Zoé Bellot
  */
-@Named(value = "converterManager")
+
+@Named("converterManager")
 @ConversationScoped
 public class ConverterManager implements Serializable {
 
-    
+    private CurrencyFacade currencyFacade;
+    private CurrencyDTO currencyFrom;
+    private CurrencyDTO currencyTo;
+    private Integer amount;
+    private Float result;
     private Exception transactionFailure;
     @Inject
     private Conversation conversation;
 
-    private void startConversation() {
-        if (conversation.isTransient()) {
-            conversation.begin();
-        }
+    public void setCurrencyFrom(CurrencyDTO currencyFrom) {
+        this.currencyFrom = currencyFrom;
+    }
+
+    public void setCurrencyTo(CurrencyDTO currencyTo) {
+        this.currencyTo = currencyTo;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
+    }
+
+    public void setResult(Float result) {
+        this.result = result;
+    }
+
+    public CurrencyDTO getCurrencyFrom() {
+        return null;
+    }
+
+    public CurrencyDTO getCurrencyTo() {
+        return null;
+    }
+
+    public Integer getAmount() {
+        return null;
+    }
+
+    public Float getResult() {
+        return result;
     }
     
     private void handleException(Exception e) {
@@ -36,18 +69,19 @@ public class ConverterManager implements Serializable {
         transactionFailure = e;
     }
 
+    private void startConversation() {
+        if (conversation.isTransient()) {
+            conversation.begin();
+        }
+    }
+    
     private void stopConversation() {
         if (!conversation.isTransient()) {
             conversation.end();
         }
     }
-    /**
-     * Creates a new instance of ConverterManager
-     */
-    public ConverterManager() {
-    }
     
-        /**
+    /**
      * Returns <code>false</code> if the latest transaction failed, otherwise <code>false</code>.
      */
     public boolean getSuccess() {
@@ -61,11 +95,28 @@ public class ConverterManager implements Serializable {
         return transactionFailure;
     }
     
-    public Integer findConversion(CurrencyDTO currencyFrom, 
-            CurrencyDTO currencyTo, Integer amount) {
-        Integer conversionFrom = currencyFrom.getConversion();
-        Integer conversionTo = currencyTo.getConversion();
-        return amount*(conversionFrom/conversionTo);
+    public void findConversion() {
+        Float conversionFrom = currencyFrom.getConversion();
+        Float conversionTo = currencyTo.getConversion();
+        result = amount*(conversionFrom/conversionTo);
+    }
+    
+    
+    public void initDatabase() {
+        try {
+            startConversation();
+            transactionFailure = null;
+            CurrencyDTO currency = currencyFacade.createNewCurrency("euro", 1.0f);
+            currency = currencyFacade.createNewCurrency("sek", 0.1166f);
+            currency = currencyFacade.createNewCurrency("dollar", 0.7698f);
+            currency = currencyFacade.createNewCurrency("pound", 1.2350f);
+            currency = currencyFacade.createNewCurrency("yuan",0.1238f);          
+        } catch (Exception e) {
+            handleException(e);
+        }
+        
+        
+        
     }
     
 
