@@ -67,4 +67,6 @@ public class ConverterManager implements Serializable {
         Integer conversionTo = currencyTo.getConversion();
         return amount*(conversionFrom/conversionTo);
     }
+    
+
 }

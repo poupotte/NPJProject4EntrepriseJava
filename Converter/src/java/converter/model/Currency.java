@@ -5,7 +5,6 @@
 package converter.model;
 
 import java.io.Serializable;
-import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,18 +33,22 @@ public class Currency implements CurrencyDTO, Serializable {
         this.conversion = conversion;       
     }
 
+    @Override
     public String getId() {
         return name;
     }
 
+    @Override
     public void setId(String name) {
         this.name = name;
     }
 
+    @Override
     public Integer getConversion(){
         return conversion;
     }
     
+    @Override
     public void setConversion(Integer conversion){
         this.conversion = conversion;
     }

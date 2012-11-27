@@ -8,6 +8,7 @@ import converter.model.Currency;
 import converter.model.CurrencyDTO;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 
 /**
  *
@@ -25,5 +26,13 @@ public class CurrencyFacade {
         em.persist(newCurrency);
         return newCurrency;
     }
-
+    
+    public CurrencyDTO getCurrency(String name) {
+        CurrencyDTO currency = em.find(Currency.class, name);
+        if (currency == null) {
+            throw new EntityNotFoundException("No currency with the name " + name);
+        }
+        return currency;
+    }
+    
 }
