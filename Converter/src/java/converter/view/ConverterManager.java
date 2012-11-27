@@ -25,19 +25,19 @@ public class ConverterManager implements Serializable {
 
     @EJB
     private CurrencyFacade currencyFacade;
-    private CurrencyDTO currencyFrom;
-    private CurrencyDTO currencyTo;
+    private String currencyFrom;
+    private String currencyTo;
     private Integer amount;
     private Float result = 0.0f;
     private Exception transactionFailure;
     @Inject
     private Conversation conversation;
 
-    public void setCurrencyFrom(CurrencyDTO currencyFrom) {
+    public void setCurrencyFrom(String currencyFrom) {
         this.currencyFrom = currencyFrom;
     }
 
-    public void setCurrencyTo(CurrencyDTO currencyTo) {
+    public void setCurrencyTo(String currencyTo) {
         this.currencyTo = currencyTo;
     }
 
@@ -49,11 +49,11 @@ public class ConverterManager implements Serializable {
         this.result = result;
     }
 
-    public CurrencyDTO getCurrencyFrom() {
+    public String getCurrencyFrom() {
         return null;
     }
 
-    public CurrencyDTO getCurrencyTo() {
+    public String getCurrencyTo() {
         return null;
     }
 
@@ -99,8 +99,8 @@ public class ConverterManager implements Serializable {
     
     public void findConversion() {
         startConversation();
-        Float conversionFrom = currencyFrom.getConversion();
-        Float conversionTo = currencyTo.getConversion();
+        Float conversionFrom = (currencyFacade.getCurrency(currencyFrom)).getConversion();
+        Float conversionTo = (currencyFacade.getCurrency(currencyTo)).getConversion();
         result = amount*(conversionFrom/conversionTo);
     }
     
