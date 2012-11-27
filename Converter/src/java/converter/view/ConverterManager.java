@@ -96,6 +96,7 @@ public class ConverterManager implements Serializable {
     }
     
     public void findConversion() {
+        startConversation();
         Float conversionFrom = currencyFrom.getConversion();
         Float conversionTo = currencyTo.getConversion();
         result = amount*(conversionFrom/conversionTo);

@@ -7,6 +7,8 @@ package converter.controller;
 import converter.model.Currency;
 import converter.model.CurrencyDTO;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 
@@ -14,6 +16,7 @@ import javax.persistence.EntityNotFoundException;
  *
  * @author zoe
  */
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @Stateless
 public class CurrencyFacade {
     
