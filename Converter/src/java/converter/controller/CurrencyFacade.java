@@ -15,7 +15,8 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author zoe
+ * @author Simon Cathébras
+ * @author Zoé Bellot
  */
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @Stateless
@@ -23,14 +24,27 @@ public class CurrencyFacade {
     @PersistenceContext(unitName = "converterPU")
     private EntityManager em;
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    
+    /**
+     * Create a new instance of currency
+     * 
+     * @param name of the currency
+     * @param conversion conversion between the currency and euro
+     * @return an object Currency which corresponds to 
+     * the name and the conversion
+     */
     public CurrencyDTO createNewCurrency(String name, Float conversion) {
         Currency newCurrency = new Currency(name, conversion);
         em.persist(newCurrency);
         return newCurrency;
     }
     
+    /**
+     * get Currency which call "name"
+     * 
+     * @param name : the name of the currency       
+     * @return CurrencyDTO which primary key is equal to "name"
+     */
     public CurrencyDTO getCurrency(String name) {
         CurrencyDTO currency = em.find(Currency.class, name);
         if (currency == null) {

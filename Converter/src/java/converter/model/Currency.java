@@ -12,7 +12,8 @@ import javax.persistence.Id;
 
 /**
  *
- * @author zoe
+ * @author Simon Cathébras
+ * @author Zoé Bellot
  */
 @Entity
 public class Currency implements CurrencyDTO, Serializable {
@@ -25,34 +26,61 @@ public class Currency implements CurrencyDTO, Serializable {
     public Currency() {
     }
     
-    /*
+    /**
      * Create a new instance of Currency
+     * 
+     * @param name : name of the currency
+     * @param conversion : conversion to convert in euro
      */
     public Currency(String name, Float conversion){
         this.name = name;
         this.conversion = conversion;       
     }
 
+    /**
+     * Get name of the currency
+     * 
+     * @return the name of the currency
+     */
     @Override
     public String getId() {
         return name;
     }
 
+    /**
+     * Set name of the currency
+     * 
+     * @param name : name of the currency
+     */
     @Override
     public void setId(String name) {
         this.name = name;
     }
 
+    /**
+     * Get the conversion of the currency to convert this currency to euro
+     * 
+     * @return conversion of the currency
+     */
     @Override
     public Float getConversion(){
         return conversion;
     }
     
+    /**
+     * Set the conversion of the currency
+     * 
+     * @param conversion : conversion between the currency and euro
+     */
     @Override
     public void setConversion(Float conversion){
         this.conversion = conversion;
     }
     
+    /**
+     * 
+     * @return hashCode
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -60,6 +88,11 @@ public class Currency implements CurrencyDTO, Serializable {
         return hash;
     }
 
+    /**
+     * 
+     * @param object
+     * @return boolean
+     */
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
