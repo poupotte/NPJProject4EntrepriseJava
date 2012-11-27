@@ -48,7 +48,7 @@ public class CurrencyFacade {
     public CurrencyDTO getCurrency(String name) {
         CurrencyDTO currency = em.find(Currency.class, name);
         if (currency == null) {
-            throw new EntityNotFoundException("No currency with the name " + name);
+            return null;
         }
         return currency;
     }
