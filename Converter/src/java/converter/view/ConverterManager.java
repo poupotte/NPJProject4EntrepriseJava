@@ -7,6 +7,7 @@ package converter.view;
 import converter.controller.CurrencyFacade;
 import converter.model.CurrencyDTO;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
@@ -22,6 +23,7 @@ import javax.inject.Named;
 @ConversationScoped
 public class ConverterManager implements Serializable {
 
+    @EJB
     private CurrencyFacade currencyFacade;
     private CurrencyDTO currencyFrom;
     private CurrencyDTO currencyTo;

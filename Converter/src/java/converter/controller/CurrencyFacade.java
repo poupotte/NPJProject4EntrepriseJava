@@ -11,6 +11,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -19,7 +20,7 @@ import javax.persistence.EntityNotFoundException;
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @Stateless
 public class CurrencyFacade {
-    
+    @PersistenceContext(unitName = "converterPU")
     private EntityManager em;
 
     // Add business logic below. (Right-click in editor and choose
