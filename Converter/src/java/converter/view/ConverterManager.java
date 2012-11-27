@@ -26,7 +26,7 @@ public class ConverterManager implements Serializable {
     private CurrencyDTO currencyFrom;
     private CurrencyDTO currencyTo;
     private Integer amount;
-    private Float result;
+    private Float result = 0.0f;
     private Exception transactionFailure;
     @Inject
     private Conversation conversation;

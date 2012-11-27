@@ -42,8 +42,8 @@
              <h:commandButton value="Convert" action="#{converterManager.findConversion}"/>
         </h:form> 
         
-         <h:outputLabel for="amount" value="Result : "/> 
-         <h:outputLabel for="amount" value="#{converterManager.result}"/> 
+         <h:outputLabel for="amount" value="Result : " rendered="#{converterManager.result!= 0.0}"/> 
+         <h:outputLabel for="amount" value="#{converterManager.result}" rendered="#{converterManager.result != 0.0}"/> 
 
     </h:body>
 </html>
